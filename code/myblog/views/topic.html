@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>文章 - 我的 beego 播客</title>
+  {{template "header"}}
+</head>
+
+<body style="padding-top: 70px">
+  <!-- 导航栏 -->
+  {{template "navbar" .}}
+
+  <!-- 内容 -->
+  <div class="container">
+    <h2>文章列表</h2>
+    <a href="/topic/add" class="btn btn-default">添加文章</a>
+    <table class="table table-striped">
+      <thread>
+        <tr>
+          <th>#</th>
+          <th>文章名称</th>
+          <th>最后更新</th>
+          <th>浏览</th>
+          <th>回复数</th>
+          <th>最后回复时间</th>
+          <td>操作</td>
+        </tr>
+      </thread>
+      <tbody>
+        {{range .Topics}}
+        <tr>
+          
+          <th><a href="/topic/view/{{.Id}}">{{.Id}}</a></th>
+          <th><a href="/topic/view/{{.Id}}">{{.Title}}</a></th>
+          <th><a href="/topic/view/{{.Id}}">{{.Updated}}</a></th>
+          <th><a href="/topic/view/{{.Id}}">{{.Views}}</a></th>
+          <th><a href="/topic/view/{{.Id}}">{{.ReplyCount}}</a></th>
+          <th><a href="/topic/view/{{.Id}}">>{{.ReplyTime}}</a></th>
+        
+          <th>
+            <a href="/topic/delete/{{.Id}}">删除</a>
+          </th>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 导入bootstrap js插件 -->
+  <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    function checkInput() {
+      var name = document.getElementById("name");
+      if (name == undefined || name == "") {
+        window.alter("请输入分类名称！");
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>
